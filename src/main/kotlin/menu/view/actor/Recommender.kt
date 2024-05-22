@@ -1,8 +1,6 @@
 package menu.view.actor;
 
 import camp.nextstep.edu.missionutils.Randoms
-import menu.exceptions.InvalidCoachCount
-import menu.exceptions.InvalidNameLengthException
 import menu.strings.GenericString
 import menu.strings.MenuErrorMessage
 import menu.strings.MenuNames
@@ -29,7 +27,7 @@ class Recommender {
     }
 
     private fun generateMenu(category: MenuNames): String {
-        val menu = when (category) {
+        return when (category) {
             MenuNames.JAPAN -> Randoms.shuffle(MenuNames.JAPAN_LIST)[0]
             MenuNames.KOREA -> Randoms.shuffle(MenuNames.KOREA_LIST)[0]
             MenuNames.CHINA -> Randoms.shuffle(MenuNames.CHINA_LIST)[0]
@@ -37,7 +35,6 @@ class Recommender {
             MenuNames.WESTERN -> Randoms.shuffle(MenuNames.WESTERN_LIST)[0]
             else -> throw IllegalArgumentException(MenuErrorMessage.INVALID_CATEGORY_NAME.message)
         }
-        return menu
     }
 
     fun toStringCategoryRecord(): String {
@@ -57,7 +54,10 @@ class Recommender {
             3 -> MenuNames.CHINA
             4 -> MenuNames.ASIAN
             5 -> MenuNames.WESTERN
-            else -> MenuNames.NONE
+            else -> {
+                println("[ERROR] Invalid Argument")
+                MenuNames.NONE
+            }
         }
     }
 
